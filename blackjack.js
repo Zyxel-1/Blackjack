@@ -76,8 +76,6 @@ class Card {
      * @returns {int} Total value of the hand
      */
     getCardValue(value) {
-      // if (typeof value === 'string'){getFaceValue(value)}
-      // else return value;
       return typeof value === 'string' ? this.getFaceValue(value) : value;
     }
   
