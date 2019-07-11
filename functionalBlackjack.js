@@ -1,8 +1,23 @@
 function createGame () {
     deck = createDeck();
-    //console.log(deck);
-    player = createCardHolder(deck);
-    //console.log(player);
+    console.log(deck);
+    result = createCardHolder(deck);
+    // TODO: IMPROVE ON THIS DEAN
+    player = {hand, handValue}
+    player.hand = result.hand;
+    player.handValue = result.handValue;
+    deck = result.newDeck;
+    //-----------------------------------
+    result = createCardHolder(deck);
+    // TODO: IMPROVE ON THIS DEAN
+    dealer = {hand, handValue}
+    dealer.hand = result.hand;
+    dealer.handValue = result.handValue;
+    deck = result.newDeck;
+    //-----------------------------------
+    console.log(player);
+    console.log(dealer)
+    console.log(deck);
 }
 function createDeck () {
       const cards = [];
@@ -23,24 +38,37 @@ function createCardHolder (deck){
     result = drawCard(deck);
     hand = result.drawnCards;
     newDeck = result.newDeck;
-    // console.log(hand);
-    // console.log(newDeck);
     handValue = calculateValue(hand);
-    //return { hand};
+    return {newDeck, hand, handValue};
 }
 function drawCard (deck){
     const drawnCards = deck.slice(0,2);
-    //console.log(drawnCards);
     const newDeck = pureSpliceThatWeDidntTakeFromAndrew(deck);
-    //console.log(newDeck);
     return {drawnCards,newDeck};
 
 }
 function pureSpliceThatWeDidntTakeFromAndrew(deck){
     return [...deck.slice(2)];    
 }
-function calculateValue (){
-
+function calculateValue (hand){
+    return hand.reduce(
+        (accumulator, currentValue) =>
+          accumulator + getCardValue(currentValue.weight),
+        0
+      );
+}
+function getCardValue(weight){
+    if(typeof weight === 'string'){
+        const weights = {
+            Jack: 10,
+            Queen: 10,
+            King: 10,
+            Ace: 11,
+        }
+        return weights[weight]
+    }else{
+        return weight;
+    }
 }
 function compareHands (){
 
