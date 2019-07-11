@@ -13,12 +13,12 @@ class Card {
   };
 
 /**Class representing a deck of cards */
- class Deck {
-     cards = [];
+ class Deck {     
      /**
       * Creates a deck of cards
       */
      constructor(){
+        this.cards = [];
         const ranks = [1,2,3,4,5,6,7,8,9,"Jack","Queen","King","Ace"];
         const suits = ["Clubs","Spades","Hearts","Diamonds"];
 
